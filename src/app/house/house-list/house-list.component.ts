@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { HouseService } from "src/app/services/houseService";
+import { House } from "../house.model";
 
 @Component({
-  selector: 'app-house-list',
-  templateUrl: './house-list.component.html',
-  styleUrls: ['./house-list.component.css']
+  selector: "app-house-list",
+  templateUrl: "./house-list.component.html",
+  styleUrls: ["./house-list.component.css"]
 })
 export class HouseListComponent implements OnInit {
-
-  constructor() { }
+  familyHouse: House[];
+  constructor(private houseServcie: HouseService) {}
 
   ngOnInit() {
+    this.houseServcie.getHouses().subscribe(houses => {
+      this.familyHouse =  houses["houses"]
+      console.log(houses);
+    });
   }
-
 }

@@ -12,8 +12,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { LoginComponent } from "./auth/login/login.component";
-import { HouseComponent } from './house/house.component';
-import { HouseListComponent } from './house/house-list/house-list.component';
+import { HouseComponent } from "./house/house.component";
+import { HouseListComponent } from "./house/house-list/house-list.component";
+import { environment } from "src/environments/environment";
+
+import { AgmCoreModule } from "@agm/core";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,12 @@ import { HouseListComponent } from './house/house-list/house-list.component';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleApi,
+      libraries: ["places", "geometry"]
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
