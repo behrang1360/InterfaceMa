@@ -18,6 +18,7 @@ import { environment } from "src/environments/environment";
 
 import { AgmCoreModule } from "@agm/core";
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pips/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     WelcomeComponent,
     HouseComponent,
-    HouseListComponent
+    HouseListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

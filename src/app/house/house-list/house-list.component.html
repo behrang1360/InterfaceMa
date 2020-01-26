@@ -4,7 +4,7 @@
       fxFlex.lg="0 1 calc(20% - 16px)"
       fxFlex.lt-lg="calc(50% - 16px)"
       fxFlex.xs="calc(100% - 16px)"
-      *ngFor="let house of familyHouse"
+      *ngFor="let house of familyHouse | filter: 5:'rooms':false"
     >
       <app-house [house]="house"></app-house>
     </mat-card>
