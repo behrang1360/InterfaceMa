@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { HouseService } from "src/app/services/houseService";
 import { House } from "../house.model";
+import { FilterType } from "src/app/model/filterType.enum";
 
 @Component({
   selector: "app-house-list",
@@ -10,11 +11,17 @@ import { House } from "../house.model";
 export class HouseListComponent implements OnInit {
   familyHouse: House[];
   loading: boolean;
+  filterType: any;
   constructor(private houseServcie: HouseService) {}
 
   ngOnInit() {
+    this.filterType = FilterType.Rooms;
     this.houseServcie.getHouses().subscribe(houses => {
-      this.familyHouse =  houses["houses"]
+      this.familyHouse = houses["houses"];
     });
+  }
+
+  filter(value) {
+    this.filterType = FilterType[value];
   }
 }

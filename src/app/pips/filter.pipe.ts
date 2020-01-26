@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { FilterType } from "../model/filterType.enum";
 
 @Pipe({
   name: "filter"
@@ -8,11 +9,11 @@ export class FilterPipe implements PipeTransform {
     value: any,
     minRooms: Number,
     propName: string,
-    hasAllData?: boolean
+    filterType: FilterType
   ): any {
     if (typeof value === "undefined") return value;
 
-    if (hasAllData === null) return value;
+    if (filterType === FilterType.Distance) return value;
 
     if (value.length === 0) return value;
 
@@ -33,7 +34,7 @@ export class FilterPipe implements PipeTransform {
       }
     }
 
-    if (hasAllData) {
+    if (filterType == FilterType.Rooms) {
       return ArraySortedByRoom.sort((a, b) =>
         a.params.rooms > b.params.rooms
           ? 1
@@ -41,10 +42,10 @@ export class FilterPipe implements PipeTransform {
           ? -1
           : 0
       );
-    } else {
+    } else if (filterType == FilterType.Street) {
       return ArraySotredByStreet.sort((a, b) =>
         a.street > b.street ? 1 : b.street > a.street ? -1 : 0
       );
-    }
+    } else return value;
   }
 }

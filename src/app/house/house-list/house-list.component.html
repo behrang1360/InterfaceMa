@@ -1,10 +1,24 @@
+<div class="filter-btn">
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click)="filter('Distance')"
+      >Sort By Distance</mat-button-toggle
+    >
+    <mat-button-toggle (click)="filter('Rooms')"
+      >Sort By Rooms</mat-button-toggle
+    >
+    <mat-button-toggle (click)="filter('Street')"
+      >Sort By Address</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</div>
+<hr />
 <div class="page-wrapper">
   <div fxLayout="row wrap" fxLayoutGap="16px" class="align" *ngIf="!loading">
     <mat-card
       fxFlex.lg="0 1 calc(20% - 16px)"
       fxFlex.lt-lg="calc(50% - 16px)"
       fxFlex.xs="calc(100% - 16px)"
-      *ngFor="let house of familyHouse | filter: 5:'rooms':false"
+      *ngFor="let house of familyHouse | filter: 5:'rooms':filterType"
     >
       <app-house [house]="house"></app-house>
     </mat-card>
