@@ -41,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: environment.googleApi,
+      apiKey: environment.googleApiKey,
       libraries: ["places", "geometry"]
     })
   ],

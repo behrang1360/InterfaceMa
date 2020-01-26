@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: "https://demo.interfacema.de/programming-assessment-1.0/buildings",
-  googleApi: "AIzaSyDVTfHA-VttyRxHOzWz78WDqvTBxOkem60"
+  googleApiKey: "AIzaSyDVTfHA-VttyRxHOzWz78WDqvTBxOkem60",
+  googleDirectionPath :"https://maps.googleapis.com/maps/api/directions/json?"
 };
 
 /*

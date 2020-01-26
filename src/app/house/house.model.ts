@@ -1,8 +1,10 @@
 import { Coord } from "./coord.model";
 import { Param } from "./param.model";
+import { Route } from '../model/route.model';
 
 export interface House {
   coords: Coord;
-  param: Param;
+  params: Param;
   street: string;
+  routes: Route[];
 }

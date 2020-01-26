@@ -9,12 +9,12 @@ import { House } from "../house.model";
 })
 export class HouseListComponent implements OnInit {
   familyHouse: House[];
+  loading: boolean;
   constructor(private houseServcie: HouseService) {}
 
   ngOnInit() {
     this.houseServcie.getHouses().subscribe(houses => {
       this.familyHouse =  houses["houses"]
-      console.log(houses);
     });
   }
 }

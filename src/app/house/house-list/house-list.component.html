@@ -1,7 +1,12 @@
-<div class="container  ">
-  <div class="row">
-    <div *ngFor="let house of familyHouse" class="col-lg-2 col-md-3 col-sm-6">
+<div class="page-wrapper">
+  <div fxLayout="row wrap" fxLayoutGap="16px" class="align" *ngIf="!loading">
+    <mat-card
+      fxFlex.lg="0 1 calc(20% - 16px)"
+      fxFlex.lt-lg="calc(50% - 16px)"
+      fxFlex.xs="calc(100% - 16px)"
+      *ngFor="let house of familyHouse"
+    >
       <app-house [house]="house"></app-house>
-    </div>
+    </mat-card>
   </div>
 </div>
