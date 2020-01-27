@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { FilterType } from "../model/filterType.enum";
 import { House } from "../house/house.model";
-import { Distance } from "../model/distance.model";
 
 @Pipe({
   name: "filter"
