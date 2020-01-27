@@ -15,9 +15,32 @@ export class FilterPipe implements PipeTransform {
   ): any {
     if (typeof value === "undefined") return value;
 
-
     if (filterType === FilterType.Appropriate) {
-      return value;
+      return value
+        .filter(item => {
+          return (
+            typeof item.params !== "undefined" &&
+            typeof item.params.rooms !== "undefined" &&
+            typeof item.params.value !== "undefined" &&
+            item.params.rooms >= 10 &&
+            item.params.value <= 5000000 &&
+            item.distance > 1
+          );
+        })
+        .reduce((result, item) => {
+          let minRest = result.length ? result[0].distance : item.distance;
+
+          if (item.distance < minRest) {
+            minRest = item.distance;
+            result.length = 0;
+          }
+
+          if (item.distance === minRest) {
+            result.push(item);
+          }
+
+          return result;
+        }, []);
     }
 
     if (filterType === FilterType.Distance) {
