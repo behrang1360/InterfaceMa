@@ -7,4 +7,5 @@ export interface House {
   params: Param;
   street: string;
   routes: Route[];
+  distance: number;
 }

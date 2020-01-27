@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { FilterType } from "../model/filterType.enum";
+import { House } from "../house/house.model";
+import { Distance } from "../model/distance.model";
 
 @Pipe({
   name: "filter"
@@ -13,9 +15,26 @@ export class FilterPipe implements PipeTransform {
   ): any {
     if (typeof value === "undefined") return value;
 
-    if (filterType === FilterType.Distance) return value;
 
-    if (value.length === 0) return value;
+    if (filterType === FilterType.Appropriate) {
+      return value;
+    }
+
+    if (filterType === FilterType.Distance) {
+      if (!Array.isArray(value)) {
+        return;
+      }
+      value.sort((a: House, b: House) => {
+        if (a["distance"] < b["distance"]) {
+          return -1;
+        } else if (a["distance"] > b["distance"]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      return value;
+    }
 
     const ArraySortedByRoom = [];
     const ArraySotredByStreet = [];

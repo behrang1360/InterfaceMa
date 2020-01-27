@@ -1,13 +1,16 @@
 <div class="filter-btn">
   <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle (click)="filter('Distance')"
+    <mat-button-toggle (click)="filter('Distance')" value="Distance"
       >Sort By Distance</mat-button-toggle
     >
-    <mat-button-toggle (click)="filter('Rooms')"
+    <mat-button-toggle (click)="filter('Rooms')" value="Rooms"
       >Sort By Rooms</mat-button-toggle
     >
-    <mat-button-toggle (click)="filter('Street')"
+    <mat-button-toggle (click)="filter('Street')" value="Street"
       >Sort By Address</mat-button-toggle
+    >
+    <mat-button-toggle (click)="filter('Street')" value="Appropriate"
+      >Appropriate Builing</mat-button-toggle
     >
   </mat-button-toggle-group>
 </div>
@@ -20,7 +23,7 @@
       fxFlex.xs="calc(100% - 16px)"
       *ngFor="let house of familyHouse | filter: 5:'rooms':filterType"
     >
-      <app-house [house]="house"></app-house>
+      <app-house [house]="house" [filterType]="filterType"></app-house>
     </mat-card>
   </div>
 </div>

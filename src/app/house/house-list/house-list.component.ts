@@ -15,7 +15,7 @@ export class HouseListComponent implements OnInit {
   constructor(private houseServcie: HouseService) {}
 
   ngOnInit() {
-    this.filterType = FilterType.Rooms;
+     
     this.houseServcie.getHouses().subscribe(houses => {
       this.familyHouse = houses["houses"];
     });

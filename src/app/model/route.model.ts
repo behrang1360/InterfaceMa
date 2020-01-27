@@ -1,5 +1,5 @@
-import { Distance } from "./distance.model";
+import { Leg } from "./leg.model";
 
 export class Route {
-  distance: Distance;
+  legs: Leg[];
 }

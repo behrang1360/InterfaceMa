@@ -2,11 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { House } from "./house.model";
 import { Location } from "../model/location.model";
 import { DirectionsService } from "../services/directionsService";
-import { makeBindingParser } from "@angular/compiler";
-import { Marker } from "../model/marker.model";
 import { AtoB } from "../model/AtoB.model";
-import { from } from 'rxjs';
-import { Route } from '../model/route.model';
+import { FilterType } from '../model/filterType.enum';
 
 @Component({
   selector: "app-house",
@@ -15,10 +12,13 @@ import { Route } from '../model/route.model';
 })
 export class HouseComponent implements OnInit {
   @Input() house: House;
+  @Input() filterType: FilterType
+
 
   constructor(private directionsService: DirectionsService) { }
 
   location: Location;
+  distance: string;
 
   atoB: AtoB;
   ngOnInit() {
@@ -33,12 +33,17 @@ export class HouseComponent implements OnInit {
       }
     };
 
-    // this.atoB = new AtoB(52.5332685, 13.4017932,
-    //   this.house.coords.lat, this.house.coords.lon)
 
-    // this.directionsService.calculateRoute(this.atoB).subscribe(data => {
-    //   this.house.routes = data["routes"];
-    //   console.log(this.house.routes);
-    // });
+
+    this.atoB = new AtoB(52.5418739, 13.4057378,
+      this.house.coords.lat, this.house.coords.lon)
+
+    this.directionsService.calculateRoute(this.atoB).subscribe(data => {
+      this.house.routes = data["routes"];
+      this.distance =this.house.routes[0].legs[0].distance.text;
+      this.house.distance = this.house.routes[0].legs[0].distance.value;
+
+      }, error => console.log('oops', error));
+     
   }
 }

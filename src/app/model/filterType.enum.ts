@@ -1,5 +1,6 @@
 export enum FilterType {
   Distance,
   Rooms,
-  Street
+  Street,
+  Appropriate
 }
